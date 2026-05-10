@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Standard Time Clock</title>
+    <style>
+        /* CSS: Styling the website */
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .clock-container {
+            text-align: center;
+            background: #333;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #ff9933; /* Indian Saffron color */
+        }
+        h1 { margin-bottom: 10px; font-size: 1.5rem; color: #ff9933; }
+        #time { font-size: 4rem; font-weight: bold; margin: 10px 0; }
+        #date { font-size: 1.2rem; color: #138808; /* Indian Green color */ }
+    </style>
+</head>
+<body>
+
+    <div class="clock-container">
+        <h1>Indian Standard Time (IST)</h1>
+        <div id="time">00:00:00</div>
+        <div id="date">Loading...</div>
+    </div>
+
+    <script>
+        // JavaScript: Updating the time live
+        function updateIST() {
+            const now = new Date();
+            
+            // Format time specifically for the India timezone
+            const timeOptions = {
+                timeZone: 'Asia/Kolkata',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            
+            const dateOptions = {
+                timeZone: 'Asia/Kolkata',
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            document.getElementById('time').textContent = now.toLocaleTimeString('en-IN', timeOptions);
+            document.getElementById('date').textContent = now.toLocaleDateString('en-IN', dateOptions);
+        }
+
+        // Update every 1 second
+        setInterval(updateIST, 1000);
+        updateIST(); // Initial call
+    </script>
+
+</body>
+</html>
